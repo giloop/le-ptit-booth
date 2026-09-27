@@ -291,7 +291,8 @@ $('print-btn').addEventListener('click', async () => {
 // ---------- Settings
 
 bindSettingsForm($('settings-form'), settings, (name) => {
-  if (name === 'removeBackground') {
+  if (name === 'removeBackground' || name === 'matteModel') {
+    if (name === 'matteModel') modelReady = false;
     if (settings.removeBackground) ensureModel();
     refreshShutter();
     return;
@@ -330,29 +331,31 @@ document.addEventListener('visibilitychange', () => {
 
 // ---------- Matting model, loaded only when background removal is on
 
-let modelLoading = null;
+// Loads are chained so that switching models while one is loading can't
+// race; each load picks the model selected at the time it runs.
+let modelLoading = Promise.resolve();
 
 function ensureModel() {
-  modelLoading ??= loadMattingModel();
+  modelLoading = modelLoading.then(loadMattingModel);
   return modelLoading;
 }
 
 async function loadMattingModel() {
+  if (!settings.removeBackground) return;
   const loader = $('loader');
   const bar = $('loader-bar');
   loader.classList.remove('done', 'error');
   $('loader-text').textContent = 'Chargement du modèle de détourage…';
   try {
-    const backend = await loadModel((fraction) => {
+    const backend = await loadModel(settings.matteModel, (fraction) => {
       bar.style.width = `${Math.round(fraction * 100)}%`;
     });
     bar.style.width = '100%';
     modelReady = true;
-    console.info(`MODNet ready on ${backend}`);
+    console.info(`MediaPipe ${settings.matteModel} segmenter ready on ${backend}`);
     loader.classList.add('done');
   } catch (error) {
     console.error(error);
-    modelLoading = null;
     loader.classList.add('error');
     $('loader-text').textContent = `Impossible de charger le modèle : ${error.message ?? error}. `
       + 'Touchez pour continuer sans détourage.';

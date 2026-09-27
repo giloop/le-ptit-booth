@@ -4,7 +4,7 @@
 // App files: network first (updates show up on reload), cache as fallback.
 // Heavy files (model, wasm, vendored libraries): cache first.
 
-const VERSION = 'v4';
+const VERSION = 'v9';
 const CACHE = `pocketbooth-${VERSION}`;
 
 const APP_FILES = [
@@ -22,12 +22,10 @@ const APP_FILES = [
 ];
 
 const HEAVY_FILES = [
-  'vendor/transformers/transformers.min.js',
-  'vendor/ort/ort-wasm-simd-threaded.asyncify.mjs',
-  'vendor/ort/ort-wasm-simd-threaded.asyncify.wasm',
-  'models/Xenova/modnet/config.json',
-  'models/Xenova/modnet/preprocessor_config.json',
-  'models/Xenova/modnet/onnx/model.onnx',
+  'vendor/mediapipe/vision_bundle.esm.js',
+  'vendor/mediapipe/wasm/vision_wasm_internal.js',
+  'vendor/mediapipe/wasm/vision_wasm_internal.wasm',
+  'models/mediapipe/selfie_segmenter.tflite',
   'vendor/pocketprinter5890/index.js',
   'vendor/pocketprinter5890/printer.js',
   'vendor/pocketprinter5890/demos.js',

@@ -7,6 +7,7 @@ export const defaults = {
   subtitle: '',
   showDate: true,
   removeBackground: true,
+  matteModel: 'selfie',
   countdown: 3,
   brightness: 10,
   contrast: 15,
@@ -51,7 +52,7 @@ export function bindSettingsForm(form, settings, onChange) {
     outputs[name].value = value > 0 ? `+${value}` : String(value);
   };
 
-  for (const name of ['title', 'subtitle', 'countdown', 'brightness', 'contrast', 'dither', 'density']) {
+  for (const name of ['title', 'subtitle', 'matteModel', 'countdown', 'brightness', 'contrast', 'dither', 'density']) {
     fields[name].value = settings[name];
     showOutput(name);
   }
