@@ -1,0 +1,15 @@
+{
+  "name": "Le P'tit Booth",
+  "short_name": "Le P'tit Booth",
+  "description": "Photobooth avec détourage et impression sur imprimante de poche",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#141210",
+  "theme_color": "#141210",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,34 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*~
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Node (in case a dev server or tooling is added)
+node_modules/
+npm-debug.log*
+.npm/
+
+# Local HTTPS certificates for testing on a phone
+*.pem
+*.key
+*.crt
+
+# Env and logs
+.env
+.env.*
+*.log
+
+# Scratch
+tmp/
+*.tmp
