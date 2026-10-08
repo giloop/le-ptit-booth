@@ -40,6 +40,10 @@ function refreshShutter() {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// iPadOS reports itself as a Mac, hence the touch check.
+const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
 /** Shows the reprint question; resolves to true when the guest says yes. */
 function askReprint() {
   const dialog = $('reprint');
@@ -86,7 +90,9 @@ function renderPrinterStatus({ connected, battery }) {
 
 async function connectPrinter() {
   if (!BoothPrinter.isSupported) {
-    toast('Bluetooth indisponible : ouvrez la page dans Chrome sur Android.', { error: true, duration: 5000 });
+    toast(isIOS()
+      ? 'Bluetooth indisponible : sur iPhone, ouvrez la page dans Safari avec l’extension beacio (beacio.com) activée pour ce site.'
+      : 'Bluetooth indisponible : ouvrez la page dans Chrome sur Android.', { error: true, duration: 8000 });
     return false;
   }
   const chip = $('printer-chip');

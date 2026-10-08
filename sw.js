@@ -4,7 +4,7 @@
 // App files: network first (updates show up on reload), cache as fallback.
 // Heavy files (model, wasm, vendored libraries): cache first.
 
-const VERSION = 'v9';
+const VERSION = 'v10';
 const CACHE = `pocketbooth-${VERSION}`;
 
 const APP_FILES = [

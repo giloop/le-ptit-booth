@@ -11,8 +11,10 @@ offline.
 
 ## Requirements
 
-- **Chrome on Android**. Web Bluetooth doesn't exist in Firefox or Safari,
-  or on iPhone/iPad.
+- **Chrome on Android**, or **Safari on iPhone/iPad with the
+  [beacio](https://beacio.com/) extension** enabled for the site. beacio adds
+  the standard `navigator.bluetooth` API to Safari, so the app detects it like
+  Chrome. Without beacio, Web Bluetooth doesn't exist in Safari or Firefox.
 - The page must be served over **HTTPS** or from `localhost`. This is
   required for both camera access and Bluetooth.
 - On the phone: Bluetooth on, and Chrome allowed to use "Nearby devices".
